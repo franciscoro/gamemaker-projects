@@ -28,6 +28,17 @@
             <string>/// init
 
 friction = 1;
+/*
+up_key = vk_up;
+down_key = vk_down;
+left_key = vk_left;
+right_key = vk_right;
+*/
+
+up_key = ord('W');
+down_key = ord('S');
+left_key = ord('A');
+right_key = ord('D');
 </string>
           </argument>
         </arguments>
@@ -98,6 +109,62 @@ game_restart();
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// 8-direction keyboard movement
+
+
+
+up = keyboard_check(up_key);
+down = keyboard_check(down_key);
+left = keyboard_check(left_key);
+right = keyboard_check(right_key);
+if (up || down || left || right) {
+    speed = 5;
+}
+
+if (up) {
+    direction = 90;
+}
+
+if (down) {
+    direction = 270;
+}
+
+if (left){
+    direction = 180;
+}
+
+if (right) {
+    direction = 0;
+}
+
+if (up &amp;&amp; left) { direction = 135 }
+if (up &amp;&amp; right) { direction = 45 }
+if (down &amp;&amp; left) { direction = 225 }
+if (down &amp;&amp; right) { direction = 315 }
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_zombie">
       <action>
         <libid>1</libid>
@@ -124,111 +191,7 @@ instance_destroy();
         </arguments>
       </action>
     </event>
-    <event eventtype="5" enumb="40">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// move down
-
-direction = 270;
-speed = 5;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// move right
-
-direction = 0;
-speed = 5;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="38">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// move up
-
-direction = 90;
-speed = 5;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="37">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// move left
-
-direction = 180;
-speed = 5;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="32">
+    <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -248,7 +211,7 @@ speed = 5;
             <string>///fire
 
 var bullet = instance_create(x,y,obj_bullet);
-bullet.direction = direction;
+bullet.direction = point_direction(x,y,mouse_x,mouse_y);
 bullet.speed = speed + 10;
 bullet.image_angle = bullet.direction;
 </string>
