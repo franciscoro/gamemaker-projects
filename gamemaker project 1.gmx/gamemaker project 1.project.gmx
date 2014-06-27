@@ -28,6 +28,7 @@
     <sprite>sprites\spr_2nd_player</sprite>
     <sprite>sprites\s_door</sprite>
     <sprite>sprites\s_invisible</sprite>
+    <sprite>sprites\spr_restart</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -64,6 +65,7 @@
     <objects name="traps">
       <object>objects\obj_trap</object>
       <object>objects\obj_spiketrap</object>
+      <object>objects\obj_nspike</object>
       <object>objects\obj_spike</object>
     </objects>
     <objects name="controllers">
@@ -73,6 +75,7 @@
     <object>objects\obj_topscore</object>
     <object>objects\o_door</object>
     <object>objects\_invisible</object>
+    <object>objects\restart</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room1</room>
